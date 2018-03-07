@@ -56,6 +56,11 @@ class MasterLock {
         return false;
     }
     public boolean turnLeft(int change) {
+        if (change >= 0) {
+            int tmp = (this.position - change) % size;
+            this.position = (tmp >= 0) ? tmp : tmp + 40;
+            return true;
+        }
         return false;
     }
     public boolean changeCombo(int x, int y, int z) {
