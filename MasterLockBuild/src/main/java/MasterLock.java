@@ -43,9 +43,17 @@ class MasterLock {
         this.state = State.CLOSED;
         return wasOpen;
     }
-    // getNumber
-    // turnRight
-    // turnLeft
-    // open
-    // changeCombo
+
+    public boolean open() {
+        return false;
+    }
+    public boolean turnRight(int x) {
+        return false;
+    }
+    public boolean turnLeft(int x) {
+        return false;
+    }
+    public boolean changeCombo(int x) {
+        return false;
+    }
 }
