@@ -1,4 +1,5 @@
 class MasterLock {
+    private static final int size = 40;
     private State state;
     private int position;
     private int x, y, z;
@@ -47,13 +48,17 @@ class MasterLock {
     public boolean open() {
         return false;
     }
-    public boolean turnRight(int x) {
+    public boolean turnRight(int change) {
+        if (change >= 0) {
+            this.position = (this.position + change) % size;
+            return true;
+        }
         return false;
     }
-    public boolean turnLeft(int x) {
+    public boolean turnLeft(int change) {
         return false;
     }
-    public boolean changeCombo(int x) {
+    public boolean changeCombo(int x, int y, int z) {
         return false;
     }
 }
