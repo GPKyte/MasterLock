@@ -16,4 +16,14 @@ public class MasterLockTest {
         MasterLock m = new MasterLock(x, y, z);
         assertEquals(m.getState(), MasterLock.State.OPEN);
     }
+
+    @Test
+    public void getClosedState() {
+        MasterLock m = new MasterLock(x, y, z);
+        assertEquals(m.getState(), MasterLock.State.OPEN);
+        assertEquals(m.close(), true);
+        assertEquals(m.getState(), MasterLock.State.CLOSED);
+    }
+
+
 }

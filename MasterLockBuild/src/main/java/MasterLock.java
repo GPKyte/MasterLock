@@ -30,6 +30,12 @@ class MasterLock {
         State externalState = this.state;
         return externalState;
     }
+
+    public boolean close() {
+        boolean wasOpen = (this.state == State.OPEN);
+        this.state = State.CLOSED;
+        return wasOpen;
+    }
     // getState
     // getNumber
     // turnRight
