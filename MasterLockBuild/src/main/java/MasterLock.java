@@ -1,6 +1,8 @@
 class MasterLock {
     private State state;
+    private int position;
     private int x, y, z;
+
     public static int main(String args[]) {
         int x, y, z;
         x = Integer.parseInt(args[0]);
@@ -24,6 +26,7 @@ class MasterLock {
         this.y = y;
         this.z = z;
         this.state = State.OPEN;
+        this.position = 0;
     }
 
     public State getState() {
@@ -31,16 +34,18 @@ class MasterLock {
         return externalState;
     }
 
+    public int getPosition() {
+        return this.position;
+    }
+
     public boolean close() {
         boolean wasOpen = (this.state == State.OPEN);
         this.state = State.CLOSED;
         return wasOpen;
     }
-    // getState
     // getNumber
     // turnRight
     // turnLeft
-    // close
     // open
     // changeCombo
 }

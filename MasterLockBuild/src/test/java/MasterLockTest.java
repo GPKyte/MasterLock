@@ -25,5 +25,9 @@ public class MasterLockTest {
         assertEquals(m.getState(), MasterLock.State.CLOSED);
     }
 
-
+    @Test
+    public void getInitPosition() {
+        MasterLock m = new MasterLock(x, y, z);
+        assertEquals(m.getPosition(), 0);
+    }
 }
