@@ -15,12 +15,21 @@ class MasterLock {
         return 0;
     }
 
+    public enum State {
+        CLOSED, X, Y, Z, OPEN
+    }
+
     public MasterLock(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.state = State.OPEN;
     }
 
+    public State getState() {
+        State externalState = this.state;
+        return externalState;
+    }
     // getState
     // getNumber
     // turnRight
@@ -28,8 +37,4 @@ class MasterLock {
     // close
     // open
     // changeCombo
-
-    private enum State {
-        LOCKED_INIT, LOCKED_X, LOCKED_Y, LOCKED_Z, OPEN
-    }
 }
