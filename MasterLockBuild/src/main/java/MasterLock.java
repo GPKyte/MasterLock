@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class MasterLock {
     private static final int size = 40;
     private State state; // Enum representing the states of the lock where OPEN is accepting
@@ -5,18 +7,72 @@ class MasterLock {
     private int displacement; // Distance traveled since last direction change
     private int x, y, z; // The three lock combo numbers
 
-    public static int main(String args[]) {
+    public static void main(String args[]) {
         int x, y, z;
         x = Integer.parseInt(args[0]);
         y = Integer.parseInt(args[1]);
         z = Integer.parseInt(args[2]);
-        MasterLock master = new MasterLock(x, y, z);
+        MasterLock m = new MasterLock(x, y, z);
 
+        System.out.println("Welcome to MasterLock Emulator v1.0.0");
+        System.out.println("For a list of commands, type help");
+        Scanner in = new Scanner(System.in);
         boolean interacting = true;
         while(interacting) {
             // Read input and go through commands
+            String[] input = in.nextLine().split(" ");
+            String command = input[0];
+            switch (command) {
+                case "help":        System.out.println("Commands are camelCase and in the form of \"<CMD> [ARG1 ARG2 ...]\"");
+                                    System.out.println("You can:\n"
+                                                        + "\tchangeCombo\n"
+                                                        + "\tgetState\n"
+                                                        + "\tgetPosition\n"
+                                                        + "\tturnLeft\n"
+                                                        + "\tturnRight\n"
+                                                        + "\topen\n"
+                                                        + "\tclose\n"
+                                                        + "\texit");
+                                    break;
+                case "changeCombo": x = Integer.parseInt(input[1]);
+                                    y = Integer.parseInt(input[2]);
+                                    z = Integer.parseInt(input[3]);
+                                    System.out.println((m.changeCombo(x, y, z)) ?
+                                                        "Combo changed to "+x+", "+y+", "+z :
+                                                        "Combo not changed");
+                                    break;
+                case "getState":    System.out.println(m.getState());
+                                    break;
+                case "getPosition": System.out.println(m.getPosition());
+                                    break;
+                case "turnLeft":    int i = Integer.parseInt(input[1]);
+                                    System.out.println((m.turnLeft(i)) ?
+                                                        "Turned left by "+i+" ticks" :
+                                                        "Did not turn. ARG1 Must be > 0");
+                                    break;
+                case "turnRight":   i = Integer.parseInt(input[1]);
+                                    System.out.println((m.turnRight(i)) ?
+                                                        "Turned right by "+i+" ticks" :
+                                                        "Did not turn. ARG1 Must be > 0");
+                                    break;
+                case "open":        System.out.println((m.open()) ?
+                                                        "Success!" :
+                                                        "Failed to open. Remember:\n"
+                                                        + "\tTurn right to X,\n"
+                                                        + "\tturn left a full turn and stop on Y,\n"
+                                                        + "\tthen turn right to Z and open.");
+                                    break;
+                case "close":       System.out.println((m.close()) ?
+                                                        "Closed" :
+                                                        "Already closed");
+                                    break;
+                case "exit":
+                case "bye":         interacting = false;
+                                    break;
+                default:            break;
+            }
         }
-        return 0;
+        in.close();
     }
 
     public enum State {
