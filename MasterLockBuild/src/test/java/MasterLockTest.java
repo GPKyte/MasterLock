@@ -55,6 +55,20 @@ public class MasterLockTest {
     }
 
     @Test
+    public void turnRightZero() {
+        MasterLock m = new MasterLock(x, y, z);
+        assertEquals(m.turnRight(0), false);
+        assertEquals(m.getPosition(), 0);
+    }
+
+    @Test
+    public void turnLeftZero() {
+        MasterLock m = new MasterLock(x, y, z);
+        assertEquals(m.turnLeft(0), false);
+        assertEquals(m.getPosition(), 0);
+    }
+
+    @Test
     public void turnLeftNormal() {
         MasterLock m = new MasterLock(x, y, z);
         assertEquals(m.turnLeft(5), true);
