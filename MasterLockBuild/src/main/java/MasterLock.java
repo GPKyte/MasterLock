@@ -72,6 +72,12 @@ class MasterLock {
     }
 
     public boolean changeCombo(int x, int y, int z) {
+        if (this.state == State.OPEN) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            return true;
+        }
         return false;
     }
 
