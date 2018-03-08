@@ -18,6 +18,7 @@ class MasterLock {
         System.out.println("For a list of commands, type help");
         Scanner in = new Scanner(System.in);
         boolean interacting = true;
+        boolean debug = false;
         while(interacting) {
             // Read input and go through commands
             String[] input = in.nextLine().split(" ");
@@ -32,14 +33,16 @@ class MasterLock {
                                                         + "\tturnRight\n"
                                                         + "\topen\n"
                                                         + "\tclose\n"
+                                                        + "\tdebug\n"
                                                         + "\texit");
+                                    System.out.println(" - debug command will give you internal state of machine.");
                                     break;
                 case "changeCombo": x = Integer.parseInt(input[1]);
                                     y = Integer.parseInt(input[2]);
                                     z = Integer.parseInt(input[3]);
                                     System.out.println((m.changeCombo(x, y, z)) ?
                                                         "Combo changed to "+x+", "+y+", "+z :
-                                                        "Combo not changed");
+                                                        "Combo not changed. Must be open.");
                                     break;
                 case "getState":    System.out.println(m.getState());
                                     break;
@@ -66,11 +69,14 @@ class MasterLock {
                                                         "Closed" :
                                                         "Already closed");
                                     break;
+                case "debug":       debug = !debug;
+                                    break;
                 case "exit":
                 case "bye":         interacting = false;
                                     break;
                 default:            break;
             }
+            if (debug) {System.out.println("\t\t\t\t"+m.state);}
         }
         in.close();
     }
