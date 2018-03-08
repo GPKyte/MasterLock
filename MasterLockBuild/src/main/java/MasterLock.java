@@ -33,8 +33,7 @@ class MasterLock {
     }
 
     public State getState() {
-        State externalState = this.state;
-        return externalState;
+        return (this.state == State.OPEN)? State.OPEN : State.CLOSED;
     }
 
     public int getPosition() {
