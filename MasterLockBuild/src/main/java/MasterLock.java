@@ -51,7 +51,7 @@ class MasterLock {
 
     public boolean turnRight(int change) {
         if (change > 0) {
-            turn(change);
+            turn(-change);
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ class MasterLock {
 
     public boolean turnLeft(int change) {
         if (change > 0) {
-            turn(-change);
+            turn(change);
             return true;
         }
         return false;
