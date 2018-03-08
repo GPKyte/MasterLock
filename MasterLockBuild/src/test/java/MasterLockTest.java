@@ -86,6 +86,17 @@ public class MasterLockTest {
         assertEquals(m.getPosition(), 35);
     }
 
+    // Will test these cases eventually inside other tests
+    // MasterLock a = new MasterLock(5, 3, 1); // x > y > z
+    // MasterLock b = new MasterLock(25, 4, 20); // x > z > y
+    // MasterLock c = new MasterLock(7, 39, 0); // y > x > z
+    // MasterLock d = new MasterLock(3, 19, 9); // y > z > x
+    // MasterLock e = new MasterLock(7, 0, 29); // z > x > y
+    // MasterLock f = new MasterLock(15, 20, 25); // z > y > x
+    // MasterLock g = new MasterLock(10, 10, 5); // x == y > z
+    // MasterLock h = new MasterLock(5, 20, 20); // y == z > x
+    // MasterLock i = new MasterLock(0, 0, 0); // x == y == z
+
     @Test
     public void testOpen() {
         MasterLock a = new MasterLock(5, 3, 1); // x > y > z
@@ -104,9 +115,6 @@ public class MasterLockTest {
         b.open();
         assertEquals(b.getState(), MasterLock.State.OPEN);
 
-        // MasterLock c = new MasterLock(7, 39, 0); // y > x > z
-        // MasterLock d = new MasterLock(3, 19, 9); // y > z > x
-
         MasterLock e = new MasterLock(7, 0, 29); // z > x > y
         e.close();
         e.turnRight(40 - 7);
@@ -114,10 +122,45 @@ public class MasterLockTest {
         e.turnRight(40 - 29);
         e.open();
         assertEquals(e.getState(), MasterLock.State.OPEN);
+    }
 
-        // MasterLock f = new MasterLock(15, 20, 25); // z > y > x
-        // MasterLock g = new MasterLock(10, 10, 5); // x == y > z
-        // MasterLock h = new MasterLock(5, 20, 20); // y == z > x
-        // MasterLock i = new MasterLock(0, 0, 0); // x == y == z
+    @Test
+    public void testIncrementalOpen() {
+        MasterLock f = new MasterLock(15, 20, 25); // z > y > x
+        f.close();
+        f.turnRight(5);
+        f.turnRight(20);
+        f.turnLeft(40);
+        f.turnLeft(5);
+        f.turnRight(1);
+        f.turnRight(1);
+        f.turnRight(1);
+        f.turnRight(1);
+        f.turnRight(1);
+        f.turnRight(30);
+        f.open();
+        assertEquals(f.getState(), MasterLock.State.OPEN);
+
+        MasterLock g = new MasterLock(10, 10, 5); // x == y > z
+        g.close();
+        g.turnRight(33);
+        g.turnRight(37);
+        g.turnLeft(20);
+        g.turnLeft(20);
+        g.turnRight(2);
+        g.turnRight(3);
+        g.open();
+        assertEquals(g.getState(), MasterLock.State.OPEN);
+    }
+
+    @Test
+    public void openAllEqual() {
+        MasterLock i = new MasterLock(0, 0, 0); // x == y == z
+        i.close();
+        i.turnRight(40);
+        i.turnLeft(40);
+        i.turnRight(40);
+        i.open();
+        assertEquals(i.getState(), MasterLock.State.OPEN);
     }
 }
