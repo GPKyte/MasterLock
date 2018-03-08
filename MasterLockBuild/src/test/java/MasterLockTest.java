@@ -6,11 +6,6 @@ public class MasterLockTest {
     private static final int y = 20;
     private static final int z = 15;
 
-    // @Test
-    // public void get() {
-    //     MasterLock m = new MasterLock(x, y, z);
-    // }
-
     @Test
     public void getInitState() {
         MasterLock m = new MasterLock(x, y, z);
@@ -111,15 +106,15 @@ public class MasterLockTest {
 
         // MasterLock c = new MasterLock(7, 39, 0); // y > x > z
         // MasterLock d = new MasterLock(3, 19, 9); // y > z > x
-        // MasterLock e = new MasterLock(7, 0, 29); // z > x > y
 
+        MasterLock e = new MasterLock(7, 0, 29); // z > x > y
         e.close();
         e.turnRight(40 - 7);
         e.turnLeft(80 - (7 - 0));
         e.turnRight(40 - 29);
         e.open();
         assertEquals(e.getState(), MasterLock.State.OPEN);
-        
+
         // MasterLock f = new MasterLock(15, 20, 25); // z > y > x
         // MasterLock g = new MasterLock(10, 10, 5); // x == y > z
         // MasterLock h = new MasterLock(5, 20, 20); // y == z > x
