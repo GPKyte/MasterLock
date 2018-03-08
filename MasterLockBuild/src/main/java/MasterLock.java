@@ -159,24 +159,25 @@ class MasterLock {
         switch (this.state) {
             case CLOSED:    if (this.displacement <= 0 && this.position == this.x) {
                                 this.state = State.X;
-                                this.displacement = 0;
                             }
                             break;
-            case X:         if (this.displacement >= size && this.displacement < 2*size && this.position == this.y) {
+            case X:         if (this.displacement >= 0 && this.displacement < 2*size && this.position != this.y) {
+                                this.state = State.X;
+                            } else if (this.displacement >= size && this.displacement < 2*size && this.position == this.y) {
                                 this.state = State.Y;
-                                this.displacement = 0;
                             } else {
                                 this.state = State.CLOSED;
                             }
                             break;
-            case Y:         if (this.displacement < 0 && this.displacement >= -size && this.position == z) {
+            case Y:         if (this.displacement < 0 && -this.displacement <= size && this.position != z) {
+                                this.state = State.Y;
+                            } else if (this.displacement < 0 && -this.displacement <= size && this.position == z) {
                                 this.state = State.Z;
-                                this.displacement = 0;
                             } else {
                                 this.state = State.CLOSED;
                             }
                             break;
-            case Z:         if (this.displacement != 0 || this.position != z) {
+            case Z:         if (this.position != z) {
                                 this.state = State.CLOSED;
                             }
                             break;
