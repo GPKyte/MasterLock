@@ -9,9 +9,14 @@ class MasterLock {
 
     public static void main(String args[]) {
         int x, y, z;
-        x = Integer.parseInt(args[0]);
-        y = Integer.parseInt(args[1]);
-        z = Integer.parseInt(args[2]);
+        try {
+            x = Integer.parseInt(args[0]);
+            y = Integer.parseInt(args[1]);
+            z = Integer.parseInt(args[2]);
+        } catch (java.lang.ArrayIndexOutOfBoundsException i) {
+            System.out.println("(Note: you can supply x, y, z as params at startup)");
+            x = y = z = 0;
+        }
         MasterLock m = new MasterLock(x, y, z);
 
         System.out.println("Welcome to MasterLock Emulator v1.0.0");
