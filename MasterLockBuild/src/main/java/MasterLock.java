@@ -93,6 +93,7 @@ class MasterLock {
             this.displacement = change;
         }
 
+        // Transition logic to mimic unlock process
         switch (this.state) {
             case CLOSED:    if (this.displacement <= 0 && this.position == this.x) {
                                 this.state = State.X;
@@ -106,7 +107,7 @@ class MasterLock {
                                 this.state = State.CLOSED;
                             }
                             break;
-            case Y:         if (this.displacement < 0 && this.position == z) {
+            case Y:         if (this.displacement < 0 && this.displacement >= -size && this.position == z) {
                                 this.state = State.Z;
                                 this.displacement = 0;
                             } else {
