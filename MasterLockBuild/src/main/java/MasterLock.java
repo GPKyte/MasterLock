@@ -129,12 +129,32 @@ class MasterLock {
         return false;
     }
 
+    public int turnRightUntil(int nextPosition) {
+        if (nextPosition >= 0 && nextPosition < size) {
+            int tmp = this.position - nextPosition;
+            int change = (tmp >= 0) ? tmp : tmp + size;
+            turnRight(change);
+            return (-change);
+        }
+        return 0;
+    }
+
     public boolean turnLeft(int change) {
         if (change > 0) {
             turn(change);
             return true;
         }
         return false;
+    }
+
+    public int turnLeftUntil(int nextPosition) {
+        if (nextPosition >= 0 && nextPosition < size) {
+            int tmp = nextPosition - this.position;
+            int change = (tmp >= 0) ? tmp : tmp + size;
+            turnLeft(change);
+            return change;
+        }
+        return 0;
     }
 
     public boolean changeCombo(int x, int y, int z) {

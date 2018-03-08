@@ -86,6 +86,19 @@ public class MasterLockTest {
         assertEquals(m.getPosition(), 35);
     }
 
+    @Test
+    public void turnRightUntil() {
+        MasterLock m = new MasterLock(x, y, z);
+        assertEquals(m.turnRightUntil(35), -5);
+        assertEquals(m.turnRightUntil(0), -35);
+    }
+
+    @Test
+    public void turnLeftUntil() {
+        MasterLock m = new MasterLock(x, y, z);
+        assertEquals(m.turnLeftUntil(5), 5);
+        assertEquals(m.turnLeftUntil(0), 35);
+    }
     // Will test these cases eventually inside other tests
     // MasterLock a = new MasterLock(5, 3, 1); // x > y > z
     // MasterLock b = new MasterLock(25, 4, 20); // x > z > y
