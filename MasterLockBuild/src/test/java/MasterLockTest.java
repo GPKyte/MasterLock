@@ -101,6 +101,7 @@ public class MasterLockTest {
     public void testOpen() {
         MasterLock a = new MasterLock(5, 3, 1); // x > y > z
         a.close();
+        a.turnRight(80);
         a.turnRight(40 - 5);
         a.turnLeft(80 - (5 - 3));
         a.turnRight(3 - 1);
@@ -109,6 +110,7 @@ public class MasterLockTest {
 
         MasterLock b = new MasterLock(25, 4, 20); // x > z > y
         b.close();
+        b.turnRight(80);
         b.turnRight(40 - 25);
         b.turnLeft(80 - (25 - 4));
         b.turnRight(40 - (20 - 4));
@@ -117,6 +119,7 @@ public class MasterLockTest {
 
         MasterLock e = new MasterLock(7, 0, 29); // z > x > y
         e.close();
+        e.turnRight(80);
         e.turnRight(40 - 7);
         e.turnLeft(80 - (7 - 0));
         e.turnRight(40 - 29);
@@ -128,6 +131,8 @@ public class MasterLockTest {
     public void testIncrementalOpen() {
         MasterLock f = new MasterLock(15, 20, 25); // z > y > x
         f.close();
+        f.turnRight(40);
+        f.turnRight(40);
         f.turnRight(5);
         f.turnRight(20);
         f.turnLeft(40);
@@ -143,6 +148,7 @@ public class MasterLockTest {
 
         MasterLock g = new MasterLock(10, 10, 5); // x == y > z
         g.close();
+        g.turnRight(40);
         g.turnRight(33);
         g.turnRight(37);
         g.turnLeft(20);
@@ -157,7 +163,7 @@ public class MasterLockTest {
     public void openAllEqual() {
         MasterLock i = new MasterLock(0, 0, 0); // x == y == z
         i.close();
-        i.turnRight(40);
+        i.turnRight(80);
         i.turnLeft(40);
         i.turnRight(40);
         i.open();

@@ -162,7 +162,7 @@ class MasterLock {
 
         // Transition logic to mimic unlock process
         switch (this.state) {
-            case CLOSED:    if (this.displacement <= 0 && this.position == this.x) {
+            case CLOSED:    if (-this.displacement >= 2*size && this.position == this.x) {
                                 this.state = State.X;
                             }
                             break;
