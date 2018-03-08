@@ -48,6 +48,10 @@ class MasterLock {
     }
 
     public boolean open() {
+        if (this.state == State.Z) {
+            this.state = State.OPEN;
+            return true;
+        }
         return false;
     }
 
