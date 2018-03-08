@@ -12,6 +12,14 @@ repositories {
     jcenter()
 }
 
+jar {
+  manifest {
+    attributes("Manifest-Version": "1.0",
+                "Created-By": "Gavin Kyte",
+                "Main-Class": "MasterLock")
+  }
+}
+
 sourceSets {
     test {
         java {
