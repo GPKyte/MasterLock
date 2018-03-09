@@ -35,7 +35,9 @@ class MasterLock {
                                                         + "\tgetState\n"
                                                         + "\tgetPosition\n"
                                                         + "\tturnLeft\n"
+                                                        + "\tturnLeftUntil\n"
                                                         + "\tturnRight\n"
+                                                        + "\tturnRightUntil\n"
                                                         + "\topen\n"
                                                         + "\tclose\n"
                                                         + "\tdebug\n"
@@ -58,11 +60,23 @@ class MasterLock {
                                                         "Turned left by "+i+" ticks" :
                                                         "Did not turn. ARG1 Must be > 0");
                                     break;
+                case "turnLeftUntil": i = m.turnLeftUntil(Integer.parseInt(input[1]));
+                                    System.out.println((i > 0) ?
+                                                        "Turned left by "+i+" ticks" :
+                                                        "Did not turn.");
+                                    break;
                 case "turnRight":   i = Integer.parseInt(input[1]);
                                     System.out.println((m.turnRight(i)) ?
                                                         "Turned right by "+i+" ticks" :
                                                         "Did not turn. ARG1 Must be > 0");
                                     break;
+                case "turnRightUntil": i = m.turnRightUntil(Integer.parseInt(input[1]));
+                                    System.out.println((i > 0) ?
+                                                        "Turned right by "+i+" ticks" :
+                                                        "Did not turn.");
+                                    break;
+
+
                 case "open":        System.out.println((m.open()) ?
                                                         "Success!" :
                                                         "Failed to open. Remember:\n"
