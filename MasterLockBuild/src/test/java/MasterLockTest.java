@@ -89,8 +89,8 @@ public class MasterLockTest {
     @Test
     public void turnRightUntil() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnRightUntil(35), -5);
-        assertEquals(m.turnRightUntil(0), -35);
+        assertEquals(m.turnRightUntil(35), 5);
+        assertEquals(m.turnRightUntil(0), 35);
     }
 
     @Test

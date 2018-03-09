@@ -148,7 +148,7 @@ class MasterLock {
             int tmp = this.position - nextPosition;
             int change = (tmp >= 0) ? tmp : tmp + size;
             turnRight(change);
-            return (-change);
+            return change;
         }
         return 0;
     }
