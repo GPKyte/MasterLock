@@ -5,6 +5,7 @@ public class MasterLockTest {
     private static final int x = 5;
     private static final int y = 20;
     private static final int z = 15;
+    private static final int size = 40;
 
     @Test
     public void getInitState() {
@@ -181,5 +182,18 @@ public class MasterLockTest {
         i.turnRight(40);
         i.open();
         assertEquals(i.getState(), MasterLock.State.OPEN);
+    }
+
+    @Test
+    public void testIncrementalOpenWithEarlyStop() {
+        MasterLock h = new MasterLock(5, 20, 20); // y == z > x
+        h.close();
+        h.turnRight(2 * size);
+        h.turnRightUntil(5);
+        h.turnLeftUntil(20);
+        h.turnLeft(size);
+        h.turnRight(size);
+        h.open();
+        assertEquals(h.getState(), MasterLock.State.OPEN);
     }
 }

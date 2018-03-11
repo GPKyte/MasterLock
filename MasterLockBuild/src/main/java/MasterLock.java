@@ -205,14 +205,18 @@ class MasterLock {
                                 this.state = State.X;
                             }
                             break;
-            case X:         if (this.displacement >= 0 && this.displacement < 2*size && this.position != this.y) {
+
+            case X:         if (this.displacement >= 0 && this.displacement < size) {
                                 this.state = State.X;
-                            } else if (this.displacement >= size && this.displacement < 2*size && this.position == this.y) {
+                            } else if (this.displacement >= size && this.displacement < 2 * size && this.position != this.y) {
+                                this.state = State.X;
+                            } else if (this.displacement >= size && this.displacement < 2 * size && this.position == this.y) {
                                 this.state = State.Y;
                             } else {
                                 this.state = State.CLOSED;
                             }
                             break;
+
             case Y:         if (this.displacement < 0 && -this.displacement <= size && this.position != z) {
                                 this.state = State.Y;
                             } else if (this.displacement < 0 && -this.displacement <= size && this.position == z) {
@@ -221,10 +225,12 @@ class MasterLock {
                                 this.state = State.CLOSED;
                             }
                             break;
+
             case Z:         if (this.position != z) {
                                 this.state = State.CLOSED;
                             }
                             break;
+
             default:        break;
         }
     }
