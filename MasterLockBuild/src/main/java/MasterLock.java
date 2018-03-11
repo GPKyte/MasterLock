@@ -44,9 +44,12 @@ class MasterLock {
                                                         + "\texit");
                                     System.out.println(" - debug command will give you internal state of machine.");
                                     break;
-                case "changeCombo": x = Integer.parseInt(input[1]);
-                                    y = Integer.parseInt(input[2]);
-                                    z = Integer.parseInt(input[3]);
+                case "changeCombo": x = Integer.parseInt(input[1]) % size;
+                                    y = Integer.parseInt(input[2]) % size;
+                                    z = Integer.parseInt(input[3]) % size;
+                                    x = (x < 0) ? x + 40 : x;
+                                    y = (y < 0) ? y + 40 : y;
+                                    z = (z < 0) ? z + 40 : z;
                                     System.out.println((m.changeCombo(x, y, z)) ?
                                                         "Combo changed to "+x+", "+y+", "+z :
                                                         "Combo not changed. Must be open.");
@@ -105,12 +108,10 @@ class MasterLock {
     }
 
     public MasterLock(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
         this.state = State.OPEN;
         this.position = 0;
         this.displacement = 0;
+        changeCombo(x, y, z);
     }
 
     public State getState() {
@@ -172,6 +173,10 @@ class MasterLock {
     }
 
     public boolean changeCombo(int x, int y, int z) {
+        x = (x % 40 < 0) ? (x % 40) + 40 : x % 40;
+        y = (y % 40 < 0) ? (y % 40) + 40 : y % 40;
+        z = (z % 40 < 0) ? (z % 40) + 40 : z % 40;
+
         if (this.state == State.OPEN) {
             this.x = x;
             this.y = y;
