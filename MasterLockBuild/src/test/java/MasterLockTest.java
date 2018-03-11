@@ -10,95 +10,95 @@ public class MasterLockTest {
     @Test
     public void getInitState() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, m.getState());
     }
 
     @Test
     public void getClosedState() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.getState(), MasterLock.State.OPEN);
-        assertEquals(m.close(), true);
-        assertEquals(m.getState(), MasterLock.State.CLOSED);
+        assertEquals(MasterLock.State.OPEN, m.getState());
+        assertEquals(true, m.close());
+        assertEquals(MasterLock.State.CLOSED, m.getState());
     }
 
     @Test
     public void getInitPosition() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.getPosition(), 0);
+        assertEquals(0, m.getPosition());
     }
 
     @Test
     public void turnLeftNormal() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnLeft(5), true);
-        assertEquals(m.getPosition(), 5);
+        assertEquals(true, m.turnLeft(5));
+        assertEquals(5, m.getPosition());
     }
 
     @Test
     public void turnLeftNegated() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnLeft(-5), false);
-        assertEquals(m.getPosition(), 0);
+        assertEquals(false, m.turnLeft(-5));
+        assertEquals(0, m.getPosition());
     }
 
     @Test
     public void turnLeftModulus() {
         MasterLock m = new MasterLock(x, y, z);
         m.turnLeft(5);
-        assertEquals(m.getPosition(), 5);
+        assertEquals(5, m.getPosition());
         m.turnLeft(40);
-        assertEquals(m.getPosition(), 5);
+        assertEquals(5, m.getPosition());
     }
 
     @Test
     public void turnLeftZero() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnLeft(0), false);
-        assertEquals(m.getPosition(), 0);
+        assertEquals(false, m.turnLeft(0));
+        assertEquals(0, m.getPosition());
     }
 
     @Test
     public void turnRightZero() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnRight(0), false);
-        assertEquals(m.getPosition(), 0);
+        assertEquals(false, m.turnRight(0));
+        assertEquals(0, m.getPosition());
     }
 
     @Test
     public void turnRightNormal() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnRight(5), true);
-        assertEquals(m.getPosition(), 35);
+        assertEquals(true, m.turnRight(5));
+        assertEquals(35, m.getPosition());
     }
 
     @Test
     public void turnRightNegated() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnRight(-5), false);
-        assertEquals(m.getPosition(), 0);
+        assertEquals(false, m.turnRight(-5));
+        assertEquals(0, m.getPosition());
     }
 
     @Test
     public void turnRightModulus() {
         MasterLock m = new MasterLock(x, y, z);
         m.turnRight(5);
-        assertEquals(m.getPosition(), 35);
+        assertEquals(35, m.getPosition());
         m.turnRight(40);
-        assertEquals(m.getPosition(), 35);
+        assertEquals(35, m.getPosition());
     }
 
     @Test
     public void turnRightUntil() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnRightUntil(35), 5);
-        assertEquals(m.turnRightUntil(0), 35);
+        assertEquals(5, m.turnRightUntil(35));
+        assertEquals(35, m.turnRightUntil(0));
     }
 
     @Test
     public void turnLeftUntil() {
         MasterLock m = new MasterLock(x, y, z);
-        assertEquals(m.turnLeftUntil(5), 5);
-        assertEquals(m.turnLeftUntil(0), 35);
+        assertEquals(5, m.turnLeftUntil(5));
+        assertEquals(35, m.turnLeftUntil(0));
     }
     // Will test these cases eventually inside other tests
     // MasterLock a = new MasterLock(5, 3, 1); // x > y > z
@@ -120,7 +120,7 @@ public class MasterLockTest {
         a.turnLeft(80 - (5 - 3));
         a.turnRight(3 - 1);
         a.open();
-        assertEquals(a.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, a.getState());
 
         MasterLock b = new MasterLock(25, 4, 20); // x > z > y
         b.close();
@@ -129,7 +129,7 @@ public class MasterLockTest {
         b.turnLeft(80 - (25 - 4));
         b.turnRight(40 - (20 - 4));
         b.open();
-        assertEquals(b.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, b.getState());
 
         MasterLock e = new MasterLock(7, 0, 29); // z > x > y
         e.close();
@@ -138,7 +138,7 @@ public class MasterLockTest {
         e.turnLeft(80 - (7 - 0));
         e.turnRight(40 - 29);
         e.open();
-        assertEquals(e.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, e.getState());
     }
 
     @Test
@@ -158,7 +158,7 @@ public class MasterLockTest {
         f.turnRight(1);
         f.turnRight(30);
         f.open();
-        assertEquals(f.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, f.getState());
 
         MasterLock g = new MasterLock(10, 10, 5); // x == y > z
         g.close();
@@ -170,7 +170,7 @@ public class MasterLockTest {
         g.turnRight(2);
         g.turnRight(3);
         g.open();
-        assertEquals(g.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, g.getState());
     }
 
     @Test
@@ -181,7 +181,7 @@ public class MasterLockTest {
         i.turnLeft(40);
         i.turnRight(40);
         i.open();
-        assertEquals(i.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, i.getState());
     }
 
     @Test
@@ -194,6 +194,6 @@ public class MasterLockTest {
         h.turnLeft(size);
         h.turnRight(size);
         h.open();
-        assertEquals(h.getState(), MasterLock.State.OPEN);
+        assertEquals(MasterLock.State.OPEN, h.getState());
     }
 }
